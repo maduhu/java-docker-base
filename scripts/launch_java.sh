@@ -15,4 +15,7 @@ export MALLOC_ARENA_MAX=2
 # Make sure that we use /dev/urandom
 JAVA_OPTS="${JAVA_OPTS} -Dvertx.cacheDirBase=/tmp -Djava.security.egd=file:/dev/./urandom"
 
+# Enable GC logging for memory tracking
+JAVA_OPTS="${JAVA_OPTS} -XX:NativeMemoryTracking=summary -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps"
+
 exec java $JAVA_OPTS -jar $JAR $JAVA_OPTS $@
